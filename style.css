@@ -1,0 +1,145 @@
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+h1 {
+    color: #008cba;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+button {
+    background-color: #008cba;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.5s, opacity 0.5s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #005f7f;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    animation: bounce 0.6s ease-in-out;
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+#mensaje {
+    font-size: 40px;
+    font-weight: bold;
+    color: red;
+    text-align: center;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+#mensaje.mostrar {
+    opacity: 1;
+    animation: blink 2s infinite alternate;
+}
+
+@keyframes blink {
+    0% { color: red; }
+    50% { color: blue; }
+    100% { color: green; }
+}
+
+#saludo {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    text-shadow: 2px 2px 10px rgba(255, 165, 0, 0.7);
+    animation: latido 1.5s infinite alternate, cambiarColor 3s infinite;
+}
+
+@keyframes latido {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+@keyframes cambiarColor {
+    0% { color: #ff9800; }
+    25% { color: #ff0000; }
+    50% { color: #ff00ff; }
+    75% { color: #00ffff; }
+    100% { color: #ff9800; }
+}
+
+#botonEscurridizo {
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
+}
+
+#botonNormal {
+    background-color: #008cba;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+body.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+#modoBoton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: gray;
+    color: white;
+}
+
+#modoBoton:hover {
+    background-color: darkgray;
+}
+
+canvas {
+    border: 2px solid black;
+    background-color: white;
+    cursor: crosshair;
+}
+
+button:hover {
+    background-color: #ddd;
+}

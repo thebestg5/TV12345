@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBSITE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Welcome to a website that helps you find interesting things.</h1>
+    <h2 id="saludo"></h2>
+    <h2>Just click a link</h2>
+
+    <!-- Cuenta regresiva -->
+    <p id="cuentaRegresiva"></p>
+
+    <!-- Botón Modo Oscuro -->
+    <button id="modoBoton">🌙 Modo Oscuro</button>
+
+    <!-- Generador de Contraseñas -->
+    <button onclick="generarContrasena()">🔒 Generar Contraseña</button>
+    <p id="resultado"></p>
+
+    <!-- Texto a Voz -->
+    <input type="text" id="textoLeer" placeholder="Welcome to my website">
+    <button onclick="leerTexto()">🗣️ Leer</button>
+
+    <!-- Canvas para dibujar -->
+    <h2>Dibuja en el lienzo 🎨</h2>
+    <canvas id="lienzo" width="600" height="400" style="border:1px solid black;"></canvas>
+    <br>
+    <label for="color">Color: </label>
+    <input type="color" id="color">
+    
+    <label for="grosor">Grosor: </label>
+    <input type="range" id="grosor" min="1" max="10" value="3">
+    
+    <button id="borrar">🧹 Borrar</button>
+    <button id="guardar">💾 Guardar</button>
+
+    <!-- Botones interactivos -->
+    <p id="mensaje"></p>
+    <button id="botonNormal">🔔 Haz clic aquí</button>
+    <button id="botonEscurridizo">😂 Intenta atraparme</button>
+
+    <!-- TV Links -->
+    <h2>TV📺⬇️</h2>
+    <p><a href="https://photocall.site/" target="_blank">PHOTOCALLTV</a></p>
+    <p><a href="https://pluto.tv/es/live-tv/660c29f80cd4630008f1547c" target="_blank">Pluto TV</a></p>
+    <p><a href="https://www.atresplayer.com/" target="_blank">Atresplayer</a></p>
+    <p><a href="https://watch.plex.tv/es" target="_blank">Plex TV</a></p>
+    <p><a href="https://directostv.teleame.com/inicio/" target="_blank">Directos TV</a></p>
+    <p><a href="https://diretele.com/" target="_blank">Diretele</a></p>
+    <p><a href="https://www.teledirecto.es/" target="_blank">TeleDirecto</a></p>
+    <p><a href="https://www.tivify.tv/inicio" target="_blank">Tivify</a></p>
+    <p><a href="https://www.rtve.es/play/" target="_blank">RTVE Play</a></p>
+    <p><a href="https://worldstvmobile.com/category/sports" target="_blank">Worlds TV Mobile (Sports)</a></p>
+    <p><a href="https://www.yupptv.com/fast-tv" target="_blank">YuppTV</a></p>
+    <p><a href="https://computertricksgg.netlify.app/" target="_blank">Computer Tricks GG</a></p>
+
+    <!-- Script Principal -->
+    <script src="script.js"></script>
+<h1>Generador de Frases Motivacionales</h1>
+    <p id="frase">Haz clic en el botón para inspirarte ✨</p>
+    <button onclick="generarFrase()">Nueva Frase</button>
+
+    <script>
+        const frases = [
+            "🌟 Cree en ti y todo será posible.",
+            "🚀 Cada día es una nueva oportunidad para brillar.",
+            "💪 El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+            "🔥 Nunca es tarde para ser quien quieres ser.",
+            "✨ La disciplina supera al talento cuando el talento no se disciplina.",
+            "🌈 La vida no se trata de encontrarte a ti mismo, sino de crearte a ti mismo.",
+            "🎯 El único límite para alcanzar tus sueños eres tú mismo.",
+            "🌿 Los grandes logros requieren tiempo, paciencia y dedicación.",
+            "💡 Si puedes soñarlo, puedes hacerlo.",
+            "🏆 El esfuerzo de hoy es el éxito de mañana."
+        ];
+
+        function generarFrase() {
+            let indice = Math.floor(Math.random() * frases.length);
+            document.getElementById("frase").innerText = frases[indice];
+        }
+    </script>
+
+    <!-- Script de generación de contraseñas -->
+    <script>
+        function generarContrasena() {
+            let caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+            let contrasena = "";
+            for (let i = 0; i < 12; i++) {
+                contrasena += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+            document.getElementById("resultado").textContent = "Contraseña: " + contrasena;
+        }
+    </script>
+
+    <!-- Script de lectura de texto -->
+    <script>
+        function leerTexto() {
+            let texto = document.getElementById("textoLeer").value;
+            let voz = new SpeechSynthesisUtterance(texto);
+            speechSynthesis.speak(voz);
+        }
+    </script>
+
+    <!-- Script de dibujo en Canvas -->
+    <script>
+        let canvas = document.getElementById("lienzo");
+        let ctx = canvas.getContext("2d");
+        let dibujando = false;
+        let color = document.getElementById("color").value;
+        let grosor = document.getElementById("grosor").value;
+
+        // Actualizar color y grosor
+        document.getElementById("color").addEventListener("input", function() {
+            color = this.value;
+        });
+
+        document.getElementById("grosor").addEventListener("input", function() {
+            grosor = this.value;
+        });
+
+        canvas.addEventListener("mousedown", () => dibujando = true);
+        canvas.addEventListener("mouseup", () => dibujando = false);
+        canvas.addEventListener("mousemove", function(event) {
+            if (!dibujando) return;
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(event.offsetX, event.offsetY, grosor / 2, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        // Botón para borrar el lienzo
+        document.getElementById("borrar").addEventListener("click", () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        // Botón para guardar la imagen
+        document.getElementById("guardar").addEventListener("click", () => {
+            let enlace = document.createElement("a");
+            enlace.href = canvas.toDataURL("image/png");
+            enlace.download = "dibujo.png";
+            enlace.click();
+        });
+    </script>
+<div class="redes-sociales">
+    <a href="https://x.com/thebestg5g" target="_blank" class="twitter">Twitter</a>
+    <a href="https://www.instagram.com/thebestg51/" target="_blank" class="instagram">Instagram</a>
+    <a href="https://www.facebook.com/search/top/?q=Tom%20Tommy" target="_blank" class="facebook">Facebook</a>
+</div>
+
+</body>
+</html>
+
